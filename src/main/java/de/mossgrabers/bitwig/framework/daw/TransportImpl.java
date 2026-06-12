@@ -138,6 +138,7 @@ public class TransportImpl implements ITransport
         this.transport.tempo ().markInterested ();
 
         final TimeSignatureValue ts = this.transport.timeSignature ();
+        ts.markInterested ();
         ts.numerator ().markInterested ();
         ts.denominator ().markInterested ();
     }
@@ -176,6 +177,7 @@ public class TransportImpl implements ITransport
         Util.setIsSubscribed (this.transport.tempo (), enable);
 
         final TimeSignatureValue ts = this.transport.timeSignature ();
+        Util.setIsSubscribed (ts, enable);
         Util.setIsSubscribed (ts.numerator (), enable);
         Util.setIsSubscribed (ts.denominator (), enable);
     }
@@ -219,7 +221,7 @@ public class TransportImpl implements ITransport
     {
         this.transport.stop ();
         // Delay the position movement to make sure that the playback is really stopped
-        this.host.scheduleTask ( () -> this.transport.setPosition (0), 100);
+        this.host.scheduleTask (() -> this.transport.setPosition (0), 100);
     }
 
 
@@ -510,7 +512,7 @@ public class TransportImpl implements ITransport
     @Override
     public String getPositionText ()
     {
-        return this.transport.getPosition ().getFormatted ( (beatTime, isAbsolute, timeSignatureNumerator, timeSignatureDenominator, timeSignatureTicks) -> StringUtils.formatTimeLong (this.getTempo (), beatTime, true));
+        return this.transport.getPosition ().getFormatted ((beatTime, isAbsolute, timeSignatureNumerator, timeSignatureDenominator, timeSignatureTicks) -> StringUtils.formatTimeLong (this.getTempo (), beatTime, true));
     }
 
 
@@ -864,6 +866,16 @@ public class TransportImpl implements ITransport
     public int getDenominator ()
     {
         return this.transport.timeSignature ().denominator ().get ();
+    }
+
+
+    /** {@inheritDoc} */
+    @Override
+    public void setTimeSignature (final int numerator, final int denominator)
+    {
+        final TimeSignatureValue timeSignature = this.transport.timeSignature ();
+        timeSignature.numerator ().set (numerator);
+        timeSignature.denominator ().set (denominator);
     }
 
 

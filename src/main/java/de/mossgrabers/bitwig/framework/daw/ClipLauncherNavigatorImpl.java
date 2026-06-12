@@ -77,7 +77,7 @@ public class ClipLauncherNavigatorImpl implements IClipLauncherNavigator
     public void navigateScenes (final boolean isLeft)
     {
         this.navigateClips (isLeft);
-        this.host.scheduleTask ( () -> this.sceneBank.getItemAt (0).selectInEditor (), 100);
+        this.host.scheduleTask (() -> this.sceneBank.getItemAt (0).selectInEditor (), 100);
     }
 
 
@@ -90,7 +90,6 @@ public class ClipLauncherNavigatorImpl implements IClipLauncherNavigator
         else
             this.sceneBank.scrollForwards ();
         this.theClip.select ();
-        this.theClip.showInEditor ();
     }
 
 
@@ -102,9 +101,7 @@ public class ClipLauncherNavigatorImpl implements IClipLauncherNavigator
             this.singleTrackBank.scrollBackwards ();
         else
             this.singleTrackBank.scrollForwards ();
-        // this.singleTrackBank.scrollBy (isLeft ? -1 : 1);
         this.theClip.select ();
-        this.theClip.showInEditor ();
 
         this.theTrack.selectInEditor ();
         this.theTrack.selectInMixer ();

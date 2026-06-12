@@ -4,7 +4,7 @@
   <groupId>de.mossgrabers</groupId>
   <artifactId>DrivenByMoss</artifactId>
   <name>DrivenByMoss</name>
-  <version>26.6.1</version>
+  <version>26.6.2</version>
   <licenses>
     <license>
       <name>LGPL-2.1-or-later</name>
@@ -16,7 +16,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.6.2</version>
+        <version>3.6.3</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -204,7 +204,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.6</version>
       </plugin>
     </plugins>
   </build>

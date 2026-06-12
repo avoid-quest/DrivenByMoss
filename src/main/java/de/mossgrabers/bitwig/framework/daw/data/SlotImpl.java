@@ -204,7 +204,6 @@ public class SlotImpl extends AbstractItemImpl implements ISlot
     public void select ()
     {
         this.slot.select ();
-        this.slot.showInEditor ();
     }
 
 
