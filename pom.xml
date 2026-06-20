@@ -13,8 +13,8 @@
 
 	<licenses>
 		<license>
-			<name>LGPL-2.1-or-later</name>
-			<url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1</url>
+			<name>LGPL-3.0-only</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>

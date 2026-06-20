@@ -1,5 +1,5 @@
-// Written by Jürgen Moßgraber - mossgrabers.de
-// (c) 2017-2026
+// Copyright (c) 2017-2026 Jürgen Moßgraber
+// Modified by Driven by Avoid contributors, 2026
 // Licensed under LGPLv3 - http://www.gnu.org/licenses/lgpl-3.0.txt
 
 package de.mossgrabers.bitwig.framework.usb;
@@ -22,6 +22,7 @@ import java.util.Optional;
  * Implementation for a HID device.
  *
  * @author Jürgen Moßgraber
+ * @author Driven by Avoid contributors
  */
 public class HidDeviceImpl implements IHidDevice
 {

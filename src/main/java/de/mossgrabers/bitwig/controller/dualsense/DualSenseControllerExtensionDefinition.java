@@ -1,5 +1,5 @@
-// Written by Jürgen Moßgraber - mossgrabers.de
-// (c) 2017-2026
+// Copyright (c) 2026 Driven by Avoid contributors
+// Derived from DrivenByMoss, copyright (c) 2017-2026 Jürgen Moßgraber
 // Licensed under LGPLv3 - http://www.gnu.org/licenses/lgpl-3.0.txt
 
 package de.mossgrabers.bitwig.controller.dualsense;
@@ -20,7 +20,7 @@ import com.bitwig.extension.controller.api.ControllerHost;
 /**
  * Definition class for the DualSense controller.
  *
- * @author Jürgen Moßgraber
+ * @author Driven by Avoid contributors
  */
 public class DualSenseControllerExtensionDefinition extends AbstractControllerExtensionDefinition<DualSenseControlSurface, DualSenseConfiguration>
 {

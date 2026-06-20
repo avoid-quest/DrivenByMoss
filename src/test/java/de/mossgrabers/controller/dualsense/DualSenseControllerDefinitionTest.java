@@ -1,5 +1,5 @@
-// Written by Jürgen Moßgraber - mossgrabers.de
-// (c) 2017-2026
+// Copyright (c) 2026 Driven by Avoid contributors
+// Derived from DrivenByMoss, copyright (c) 2017-2026 Jürgen Moßgraber
 // Licensed under LGPLv3 - http://www.gnu.org/licenses/lgpl-3.0.txt
 
 package de.mossgrabers.controller.dualsense;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for the DualSense controller definition.
  *
- * @author Jürgen Moßgraber
+ * @author Driven by Avoid contributors
  */
 class DualSenseControllerDefinitionTest
 {

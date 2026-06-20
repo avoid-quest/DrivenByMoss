@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Bitwig extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up toolchain
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+          cache: true
+
+      - name: Build extension
+        run: mise run build
+
+      - name: Select Bitwig extension artifact
+        id: extension
+        shell: bash
+        run: |
+          extensions=()
+          while IFS= read -r extension; do
+            extensions+=("$extension")
+          done < <(find target -maxdepth 1 -type f -name "*.bwextension" | sort)
+
+          if [ "${#extensions[@]}" -ne 1 ]; then
+            printf 'Expected exactly one target/*.bwextension file, found %s:\n' "${#extensions[@]}" >&2
+            printf '%s\n' "${extensions[@]}" >&2
+            exit 1
+          fi
+
+          echo "path=${extensions[0]}" >> "$GITHUB_OUTPUT"
+          echo "name=$(basename "${extensions[0]}" .bwextension)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload Bitwig extension
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.extension.outputs.name }}
+          path: ${{ steps.extension.outputs.path }}
+          if-no-files-found: error

@@ -1,5 +1,5 @@
-// Written by Jürgen Moßgraber - mossgrabers.de
-// (c) 2017-2026
+// Copyright (c) 2026 Driven by Avoid contributors
+// Derived from DrivenByMoss, copyright (c) 2017-2026 Jürgen Moßgraber
 // Licensed under LGPLv3 - http://www.gnu.org/licenses/lgpl-3.0.txt
 
 package de.mossgrabers.controller.dualsense.controller;
@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * HID bridge for a wired USB DualSense.
  *
- * @author Jürgen Moßgraber
+ * @author Driven by Avoid contributors
  */
 public class DualSenseHidDevice
 {
