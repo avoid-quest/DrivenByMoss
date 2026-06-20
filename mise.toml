@@ -1,0 +1,18 @@
+[tools]
+java = "temurin-21"
+maven = "3.9.16"
+
+[tasks."toolchain:verify"]
+run = "java -version && mvn -v"
+
+[tasks.build]
+run = "mvn clean install -Dbitwig.extension.directory=target"
+
+[tasks."release:macos"]
+depends = ["build"]
+
+[tasks."release:windows"]
+depends = ["build"]
+
+[tasks."deps:check"]
+run = "mvn versions:display-plugin-updates versions:display-dependency-updates"

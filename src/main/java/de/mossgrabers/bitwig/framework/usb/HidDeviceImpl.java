@@ -111,11 +111,11 @@ public class HidDeviceImpl implements IHidDevice
             return;
         this.hidDevice.setInputReportListener ( (source, id, data, length) -> {
 
-            // purehid documentation says otherwise but MAC also contains the report ID in
-            // data[0], therefore remove it
+            // purehid documentation says otherwise but MAC can also contain the report ID in
+            // data[0], therefore remove it when it is actually present.
             byte [] d = data;
             int l = length;
-            if (OperatingSystem.isMacOS ())
+            if (OperatingSystem.isMacOS () && l > 0 && data[0] == id)
             {
                 l--;
                 d = new byte [l];

@@ -9,3 +9,6 @@ fileHashes.lock
 /.idea
 *.iml
 /bin/
+mise.local.toml
+.mise.local.toml
+dependency-reduced-pom.xml
