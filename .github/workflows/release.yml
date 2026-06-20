@@ -2,12 +2,16 @@ name: Release
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "v*"
+    inputs:
+      tag:
+        description: "Release tag to build and attach"
+        required: true
+        type: string
+  release:
+    types: [published]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -16,10 +20,12 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
 
       - name: Set up toolchain
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@v4.2.0
         with:
           install: true
           cache: true
@@ -46,8 +52,14 @@ jobs:
           echo "name=$(basename "${extensions[0]}" .bwextension)" >> "$GITHUB_OUTPUT"
 
       - name: Upload Bitwig extension
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: ${{ steps.extension.outputs.name }}
           path: ${{ steps.extension.outputs.path }}
           if-no-files-found: error
+
+      - name: Attach Bitwig extension to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: gh release upload "$RELEASE_TAG" "${{ steps.extension.outputs.path }}" --clobber --repo "$GITHUB_REPOSITORY"
